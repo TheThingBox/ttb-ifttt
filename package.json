@@ -4,7 +4,7 @@
   "description": "This node allow the user to use the channel Maker's trigger of IFTTT.",
   "node-red": {
     "nodes": {
-      "ifttt-trigger": "ifttt-trigger.js"
+      "ifttt-trigger": "nodes/ifttt-trigger.js"
     }
   },
   "dependencies": {
