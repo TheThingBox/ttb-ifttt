@@ -1,0 +1,35 @@
+{
+  "name": "ttb-ifttt",
+  "version": "0.1.0",
+  "description": "This node allow the user to use the channel Maker's trigger of IFTTT.",
+  "node-red": {
+    "nodes": {
+      "ifttt-trigger": "ifttt-trigger.js"
+    }
+  },
+  "dependencies": {
+    "mustache": "3.0.1",
+    "follow-redirects": "1.7.0"
+  },
+  "installation-duration":60,
+  "keywords": [
+    "node-red",
+    "trigger",
+    "ifttt",
+    "maker"
+  ],
+  "main": "none",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thethingbox/ttb-ifttt.git"
+  },
+  "author": "thethingbox <thethingbox@gmail.com> (http://thethingbox.io/)",
+  "license": "http://www.wtfpl.net",
+  "bugs": {
+    "url": "https://github.com/TheThingBox/ttb-ifttt/issues"
+  },
+  "homepage": "https://github.com/TheThingBox/ttb-ifttt#readme"
+}

@@ -1,0 +1,87 @@
+<script type="text/x-red" data-template-name="ifttt trigger">
+    <div class="form-row">
+        <label for="node-input-event"><i class="icon-tasks"></i> Event</label>
+        <input type="text" id="node-input-event" placeholder="Event code">
+    </div>
+    <div class="form-row">
+        <label for="node-input-secretkey"><i class="icon-lock"></i> Secret key</label>
+        <input type="text" id="node-input-secretkey" placeholder="Your IFTTT secret key">
+    </div>
+    <div class="form-row">
+        <label for="node-input-val1"><i class="icon-bookmark"></i> Value 1</label>
+        <input type="text" id="node-input-val1">
+    </div>
+    <div class="form-row">
+        <label for="node-input-val2"><i class="icon-bookmark"></i> Value 2</label>
+        <input type="text" id="node-input-val2">
+    </div>
+    <div class="form-row">
+        <label for="node-input-val3"><i class="icon-bookmark"></i> Value 3</label>
+        <input type="text" id="node-input-val3">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-tips" id="tip-json" hidden>Tip: If the JSON parse fails the fetched string is returned as-is.</div>
+</script>
+
+<script type="text/x-red" data-help-name="ifttt trigger">
+    <p>Provides a node for making an <a href="https://ifttt.com/" target="_new">IFTTT</a> Trigger.</p>
+    <p>The event generate by the node can have three optional values define by <code>value 1</code>, <code>value 2</code> and <code>value 3</code> :</p>
+    <ul>
+        <li><code>event</code>, have to be set without blankspaces</li>
+        <li><code>secret key</code>, you can retieve your secret key <a href="https://ifttt.com/maker" target="_new">here</a> when you are logged in IFTTT.</li>
+        <li><code>value 1, 2 & 3</code>, you can set values like this example :
+            <ul>
+                <li><code>value 1</code> : house-temperature</li>
+                <li><code>value 2</code> : 25</li>
+                <li><code>value 3</code> : 07-03-2015 14:25</li>
+            </ul>
+        </li>
+    </ul>
+    <p>All the information of this node can also be set by a function like that :</p>
+    <ul>
+        <li><code>event</code> with <code>msg.event</code></li>
+        <li><code>secret key</code> with <code>msg.secretkey</code></li>
+        <li><code>value 1</code> with <code>msg.value1</code></li>
+        <li><code>value 2</code> with <code>msg.value2</code></li>
+        <li><code>value 3</code> with <code>msg.value3</code></li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ifttt trigger',{
+        category: 'function',
+        color: "#FFFFFF",
+        defaults: {
+            url: { value: "" },
+            name: { value: "" },
+            method: { value: "POST" },
+            ret: { value: "txt" },
+            event: { value: "" },
+            secretkey: { value: "" },
+            val1: { value: "" },
+            val2: { value: "" },
+            val3: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "ifttt.png",
+        label: function() {
+            return this.name||"ifttt trigger";
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $("#node-input-ret").change(function() {
+                if ($("#node-input-ret").val() === "obj") {
+                    $("#tip-json").show();
+                } else {
+                    $("#tip-json").hide();
+                }
+            });
+        }
+    });
+</script>
