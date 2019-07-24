@@ -12,23 +12,38 @@ module.exports = function(RED) {
         this.on("input",function(msg) {
             this.secretkey = msg.secretkey || n.secretkey;
             this.event = msg.event || n.event;
-            this.val1 = msg.value1 || msg.payload || n.val1;
-            this.val2 = msg.value2 || n.val2;
-            this.val3 = msg.value3 || n.val3;
+
+            this.val1 = msg.value1;
+            if(typeof this.val1 === 'undefined'){
+              this.val1 = msg.payload
+            }
+            if(typeof this.val1 === 'undefined'){
+              this.val1 = n.val1
+            }
+
+            this.val2 = msg.value2;
+            if(typeof this.val2 === 'undefined'){
+              this.val2 = n.val2
+            }
+
+            this.val3 = msg.value3;
+            if(typeof this.val3 === 'undefined'){
+              this.val3 = n.val3
+            }
 
             var delimiter = '?'
             this.url = `https://maker.ifttt.com/trigger/${this.event}/with/key/${this.secretkey}`;
-            
+
             if (this.val1 != "") {
                 this.url = `${this.url}${delimiter}value1=${this.val1}`;
                 delimiter = '&'
             }
-            
+
             if (this.val2 != "") {
                 this.url = `${this.url}${delimiter}value2=${this.val2}`;
                 delimiter = '&'
             }
-            
+
             if (this.val3 != "") {
                 this.url = `${this.url}${delimiter}value3=${this.val3}`;
             }
