@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "mustache": "3.0.1",
-    "follow-redirects": "1.7.0"
+    "follow-redirects": "1.15.6"
   },
   "installation-duration":60,
   "keywords": [
